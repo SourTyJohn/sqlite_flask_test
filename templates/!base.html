@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Test (Fullstack Web)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/big_list.css') }}">
+</head>
+
+<body>
+    <div id="navbar">
+        <ul class="navbar">
+            <li class="navbar_elem"> <a href="/"> Клиенты </a> </li>
+            <li class="navbar_elem"> <a href="/profile/login"> Аккаунт </a> </li>
+            {% if user %}
+            <li class="navbar_elem"><form action="/clients/new" method="post">
+                <input type="submit" value="+ Новый клиент">
+            </form></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div id="content" class="global_wrapper">
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

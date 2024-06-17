@@ -1,0 +1,89 @@
+{% extends "!base.html" %}
+{% block content %}
+
+<div class="main_clients_wrapper">
+    {% if not user %}
+    <div class="form_container">
+        <div class="text">
+             Войдите в аккаунт или зерегестрируйтесь, чтобы пользоватся сайтом
+        </div>
+    </div>
+    {% endif %}
+
+    {% for client in clients %}
+        <div class="client_wrapper">
+            <form action="/clients/update" method="post">
+                <input type="hidden" name='id' value="{{ client[0]}} "> <!-- client ID -->
+
+                <div class="fields">
+                    <div class="client_row">
+                        <div class="client_field">
+                            <input type="text" value="{% if client[3] %} {{client[3]}} {% endif %}"
+                                   name="firstname" id="firstname" placeholder="не указано">
+                            <label for="firstname">Имя</label>
+                        </div>
+                        <div class="client_field">
+                            <input type="text" value="{% if client[2] %} {{client[2]}} {% endif %}"
+                                   name="lastname" id="lastname" placeholder="не указано">
+                            <label for="lastname">Фамилия</label>
+                        </div>
+                        <div class="client_field">
+                            <input type="text" value="{% if client[4] %} {{client[4]}} {% endif %}"
+                                   name="fathername" id="fathername" placeholder="не указано">
+                            <label for="fathername">Отчество</label>
+                        </div>
+                        <div class="client_field">
+                            <input type="date" value="{% if client[5] %}{{client[5]}}{% endif %}"
+                                   name="birth_date" id="birth_date" placeholder="не указано">
+                            <label for="birth_date">Дата рождения</label>
+                        </div>
+                    </div>
+
+                    <div class="client_row">
+                        <div class="client_field">
+                            <input type="text" value="{% if client[1] %} {{client[1]}} {% endif %}"
+                                   name="account_number" id="account_number" placeholder="не указано">
+                            <label for="account_number">Номер счета</label>
+                        </div>
+                        <div class="client_field">
+                            <input type="text" value="{% if client[6] %} {{client[6]}} {% endif %}"
+                                   name="inn_number" id="inn_number" placeholder="не указано">
+                            <label for="inn_number">ИНН</label>
+                        </div>
+                        <div class="client_field">
+                            <select name="status" id="status">
+                                {% if client[8] == "0" %}
+                                    <option selected value="0">В работе</option>
+                                {% else %}
+                                    <option value="0">В работе</option>
+                                {% endif %}
+
+                                {% if client[8] == "1" %}
+                                    <option selected value="1">Отказ</option>
+                                {% else %}
+                                    <option value="1">Отказ</option>
+                                {% endif %}
+
+                                {% if client[8] == "2" %}
+                                    <option selected value="2">Сделка закрыта</option>
+                                {% else %}
+                                    <option value="2">Сделка закрыта</option>
+                                {% endif %}
+                            </select>
+                            <label for="status">Статус</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="send_wrapper">
+                    {{ client[0]}}
+                    <input class="formInputButton" type="submit" value="Сохранить изменения">
+                </div>
+
+            </form>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

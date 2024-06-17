@@ -1,0 +1,62 @@
+{% extends "!base.html" %}
+{% block content %}
+
+<div class="form_container">
+    <div class="text">
+     Регистрация
+    </div>
+
+    <form action="/profile/register" method="post">
+        <div class="row">
+            <div class="input-data">
+               <input type="text" id="id_name_0" name="name_1" required>
+               <div class="underline"></div>
+               <label for="id_name_0">Имя</label>
+            </div>
+            <div class="input-data">
+               <input type="text" id="id_name_1" name="name_2" required>
+               <div class="underline"></div>
+               <label for="id_name_1">Фамилия</label>
+            </div>
+            <div class="input-data">
+               <input type="text" id="id_name_2" name="name_3" required>
+               <div class="underline"></div>
+               <label for="id_name_2">Отчество</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-data">
+               <input type="text" id="login" name="login" required>
+               <div class="underline"></div>
+               <label for="login">Логин</label>
+            </div>
+            <div class="input-data">
+               <input type="password" id="password" name="password" required>
+               <div class="underline"></div>
+               <label for="password">Пароль</label>
+            </div>
+        </div>
+        <div class="row flex-center-row">
+            <div class="row submit-btn">
+               <div class="input-data">
+                  <div class="inner"></div>
+                  <input type="submit" value="Зарегистрироваться">
+               </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="text_small_error">
+     {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="white">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+</div>
+
+
+{% endblock %}

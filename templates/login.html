@@ -1,0 +1,48 @@
+{% extends "!base.html" %}
+{% block content %}
+
+<div class="form_container">
+    <div class="text">
+     Вход в аккаунт
+    </div>
+
+    <form action="/profile/login" method="post">
+        <div class="row">
+            <div class="input-data">
+               <input type="text" id="login" name="login" required>
+               <div class="underline"></div>
+               <label for="login">Логин</label>
+            </div>
+            <div class="input-data">
+               <input type="password" id="password" name="password" required>
+               <div class="underline"></div>
+               <label for="password">Пароль</label>
+            </div>
+        </div>
+        <div class="row flex-center-row">
+            <div class="row submit-btn">
+               <div class="input-data">
+                  <div class="inner"></div>
+                  <input type="submit" value="Войти">
+               </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="text_small">
+     {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="white">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="text_small">
+        Нет аккаунта? <a href="/profile/register">Зарегистрироваться</a>
+    </div>
+
+</div>
+
+{% endblock %}
